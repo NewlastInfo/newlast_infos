@@ -10,7 +10,7 @@ MYSQL_PASSWORD = 'WKe@YwruhzydqXDFAAVM'
 MYSQL_DATABASES = 'pajia_server_001_db'
 
 # REDIS
-REDIS_HOST = 'spider200'
+REDIS_HOST = '193.112.98.154'
 REDIS_PASSWORD = 'd2hvYW1pOmlhbXdobw=='
 REDIS_DB = 6
 
