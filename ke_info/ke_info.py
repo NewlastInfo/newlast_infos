@@ -15,7 +15,7 @@ from lxml import etree
 
 
 class KeInfo:
-    session = AioRequests()
+    # session = AioRequests()
     ke_head_url = 'https://36kr.com'
 
     mysql_host = MYSQL_HOST
@@ -39,7 +39,6 @@ class KeInfo:
         )
         return req_params
 
-    @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     async def get_36ke_venture_capital(self):
         req_params = self.get_req_params()
         async with aiohttp.ClientSession() as session:
@@ -61,7 +60,6 @@ class KeInfo:
                     await self.insert_ke_data(tuple_sql)
         time.sleep(60 * 60)
 
-    @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     async def insert_ke_data(self, tuple_sql: tuple):
         """
         1、20220105新增MySQL存储
@@ -95,7 +93,7 @@ class KeInfo:
         except Exception as w:
             pass
 
-@logger.catch  # 添加日志装饰器，自动将代码异常处记录
+
 def ke_main():
     while True:
         try:
