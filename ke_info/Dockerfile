@@ -9,7 +9,7 @@ RUN apt-get -y install unzip
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
 COPY ke_info.py  /spiders/ke_info.py
-COPY aioRequests.py  /spiders/aioRequests.py
+
 COPY settings.py  /spiders/settings.py
 COPY dingTalk_ke.py  /spiders/dingTalk_ke.py
 

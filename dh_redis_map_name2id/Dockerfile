@@ -8,8 +8,7 @@ RUN apt-get -y install unzip
 ### 创建工作目录
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
-COPY dh_redis_map_name2id.py  /spiders/dh_redis_map_name2id.py
-COPY aioRequests.py  /spiders/aioRequests.py
+
 COPY settings.py  /spiders/settings.py
 COPY dingTalk_dh.py  /spiders/dingTalk_dh.py
 COPY requirements.txt /spiders/requirements.txt

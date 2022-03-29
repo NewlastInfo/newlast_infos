@@ -27,7 +27,7 @@ RUN cp chromedriver /home/root/chromedriver
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
 COPY white_alcohol.py  /spiders/white_alcohol.py
-COPY aioRequests.py  /spiders/aioRequests.py
+
 COPY settings.py  /spiders/settings.py
 COPY dingTalk_white_alchol.py  /spiders/dingTalk_white_alchol.py
 
