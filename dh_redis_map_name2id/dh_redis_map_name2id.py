@@ -14,7 +14,7 @@ class DhName2id:
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def get_true_or_false(self):
-        prod_r = redis.Redis(host='spider200', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
+        prod_r = redis.Redis(host='193.112.98.154', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
 
         data_dh_dict = prod_r.hgetall(self.list_name)
         value_list = []
