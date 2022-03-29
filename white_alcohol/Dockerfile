@@ -7,7 +7,7 @@ COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
 
 RUN apt-key add /home/root/linux_signing_key.pub
 RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-RUN apt-get update 
+# RUN apt-get update
 RUN apt-get -y install google-chrome-stable
 
 ### 复制浏览器驱动linux版本到docker容器内并且编译安装浏览器驱动
@@ -15,7 +15,7 @@ RUN apt-get -y install google-chrome-stable
 # RUN unzip /usr/local/python37/bin/chromedriver_linux64.zip
 
 RUN wget http://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
-RUN apt-get -y install zip
+# RUN apt-get -y install zip
 RUN apt-get -y install unzip
 RUN unzip -c  chromedriver_linux64.zip
 RUN unzip   chromedriver_linux64.zip
