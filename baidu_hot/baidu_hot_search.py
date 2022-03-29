@@ -3,6 +3,7 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+import requests
 import re
 import time
 import datetime
@@ -26,9 +27,8 @@ class BaiDuHotSearch:
     mysql_password = MYSQL_PASSWORD
     mysql_databases = MYSQL_DATABASES
 
-    @logger.catch  # 添加日志装饰器，自动记录代码异常处
-    @classmethod
-    def get_req_params(cls):
+    @logger.catch
+    def get_req_params(self):
         url = "https://top.baidu.com/board?tab=realtime"
         headers = {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -41,30 +41,32 @@ class BaiDuHotSearch:
         )
         return req_params
 
-    async def get_baidu_hot_search(self):
+    @logger.catch
+    def get_baidu_hot_search(self):
         req_params = self.get_req_params()
-        async with aiohttp.ClientSession() as session:
-            async with session.request(**req_params) as response:
-                res_code = await response.text()
-                html = etree.HTML(res_code)
-                html_infos = html.xpath('//div[contains(@class,"QLoo h")]')
-                # print(len(html_infos))
-                for html_info in html_infos[:10]:
-                    title = ''.join(html_info.xpath('.//div[contains(@class,"single-text")]//text()')).strip()
-                    info_url = ''.join(html_info.xpath('.//a[contains(@class,"img-wrapper")]/@href')).strip()
-                    summary = ''.join(html_info.xpath('.//div[contains(@class,"c_1m_jR l")]/text()')).strip()
-                    hot_index = int(''.join(html_info.xpath('.//div[contains(@class,"hot-index")]/text()')).strip())
-                    try:
-                        ranking = int(''.join(html_info.xpath('.//div[contains(@class,"index_1Ew5p")]/text()')).strip())
-                    except Exception as e:
-                        ranking = 0
-                    public_time = str(datetime.datetime.now().date())
-                    # print(public_time)
-                    tuple_sql = (title, info_url, summary, hot_index, ranking, public_time,)
-                    await self.insert_baidu_hot_info_data(tuple_sql)
+
+        res_code = requests.get(req_params.get('url'), req_params.get('headers')).text
+        html = etree.HTML(res_code)
+        html_infos = html.xpath('//div[contains(@class,"QLoo h")]')
+        print(len(html_infos))
+        for html_info in html_infos[:10]:
+            title = ''.join(html_info.xpath('.//div[contains(@class,"single-text")]//text()')).strip()
+            info_url = ''.join(html_info.xpath('.//a[contains(@class,"img-wrapper")]/@href')).strip()
+            summary = ''.join(html_info.xpath('.//div[contains(@class,"c_1m_jR l")]/text()')).strip()
+            hot_index = int(''.join(html_info.xpath('.//div[contains(@class,"hot-index")]/text()')).strip())
+            try:
+                ranking = int(''.join(html_info.xpath('.//div[contains(@class,"index_1Ew5p")]/text()')).strip())
+            except Exception as e:
+                ranking = 0
+            public_time = str(datetime.datetime.now().date())
+            # print(public_time)
+            tuple_sql = (title, info_url, summary, hot_index, ranking, public_time,)
+            print(tuple_sql)
+            self.insert_baidu_hot_info_data(tuple_sql)
         time.sleep(3 * 60 * 60)
 
-    async def insert_baidu_hot_info_data(self, tuple_sql: tuple):
+    @logger.catch
+    def insert_baidu_hot_info_data(self, tuple_sql: tuple):
         """
         1、20220105新增MySQL存储
         2、存储各个渠道的价格历史数据
@@ -98,12 +100,11 @@ class BaiDuHotSearch:
             pass
 
 
+@logger.catch
 def baidu_main():
     while True:
         try:
-            loop = asyncio.get_event_loop()
-            ke = BaiDuHotSearch().get_baidu_hot_search()
-            loop.run_until_complete(ke)
+            BaiDuHotSearch().get_baidu_hot_search()
         except Exception as e:
             pass
 

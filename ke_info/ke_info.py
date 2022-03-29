@@ -5,7 +5,7 @@ import re
 import time
 import dateparser
 import asyncio
-import aiohttp
+import requests
 import pymysql
 from loguru import logger
 
@@ -25,8 +25,7 @@ class KeInfo:
     mysql_databases = MYSQL_DATABASES
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
-    @classmethod
-    def get_req_params(cls):
+    def get_req_params(self):
         url = "https://36kr.com/information/technology/"
         headers = {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -39,28 +38,28 @@ class KeInfo:
         )
         return req_params
 
-    async def get_36ke_venture_capital(self):
+    def get_36ke_venture_capital(self):
         req_params = self.get_req_params()
-        async with aiohttp.ClientSession() as session:
-            async with session.request(**req_params) as response:
-                res_code = await response.text()
-                html = etree.HTML(res_code)
-                html_infos = html.xpath(
-                    '//div[@class="information-flow-list"]//div[@class="article-item-info clearfloat"]')
-                for html_info in html_infos:
-                    title = ''.join(html_info.xpath('.//a[contains(@class,"m-title")]//text()')).strip()
-                    info_url = self.ke_head_url + ''.join(
-                        html_info.xpath('.//a[contains(@class,"m-title")]/@href')).strip()
-                    summary = ''.join(html_info.xpath('.//a[contains(@class,"m-description")]//text()')).strip()
-                    author = ''.join(html_info.xpath('.//a[contains(@class,"author")]//text()')).strip()
-                    public_time_str = ''.join(html_info.xpath('.//span[contains(@class,"bar-time")]//text()')).strip()
-                    public_time = str(dateparser.parse(public_time_str)).split('.')[0].strip()
-                    time.sleep(20)
-                    tuple_sql = (title, info_url, summary, author, public_time,)
-                    await self.insert_ke_data(tuple_sql)
+        res_code = requests.get(req_params.get('url'), req_params.get('headers')).text
+        html = etree.HTML(res_code)
+        html_infos = html.xpath(
+            '//div[@class="information-flow-list"]//div[@class="article-item-info clearfloat"]')
+        print(len(html_infos))
+        for html_info in html_infos:
+            title = ''.join(html_info.xpath('.//a[contains(@class,"m-title")]//text()')).strip()
+            info_url = self.ke_head_url + ''.join(
+                html_info.xpath('.//a[contains(@class,"m-title")]/@href')).strip()
+            summary = ''.join(html_info.xpath('.//a[contains(@class,"m-description")]//text()')).strip()
+            author = ''.join(html_info.xpath('.//a[contains(@class,"author")]//text()')).strip()
+            public_time_str = ''.join(html_info.xpath('.//span[contains(@class,"bar-time")]//text()')).strip()
+            public_time = str(dateparser.parse(public_time_str)).split('.')[0].strip()
+            time.sleep(30)
+            tuple_sql = (title, info_url, summary, author, public_time,)
+            # print(tuple_sql)
+            self.insert_ke_data(tuple_sql)
         time.sleep(60 * 60)
 
-    async def insert_ke_data(self, tuple_sql: tuple):
+    def insert_ke_data(self, tuple_sql: tuple):
         """
         1、20220105新增MySQL存储
         2、存储各个渠道的价格历史数据
@@ -97,9 +96,9 @@ class KeInfo:
 def ke_main():
     while True:
         try:
-            loop = asyncio.get_event_loop()
-            ke = KeInfo().get_36ke_venture_capital()
-            loop.run_until_complete(ke)
+
+            KeInfo().get_36ke_venture_capital()
+
         except Exception as e:
             pass
 
