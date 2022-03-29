@@ -9,6 +9,9 @@ RUN apt-get -y install unzip
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
 COPY baidu_hot_search.py  /spiders/baidu_hot_search.py
+COPY aioRequests.py  /spiders/aioRequests.py
+COPY settings.py  /spiders/settings.py
+COPY dingTalk_baidu_hot.py  /spiders/dingTalk_baidu_hot.py
 COPY requirements.txt /spiders/requirements.txt
 ### 设置 /spider 为工作目录
 ### 下载 python 项目的依赖库
