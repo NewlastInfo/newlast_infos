@@ -18,7 +18,8 @@ class WhiteAlcohol:
     ch_options = Options()
     ch_options.add_argument("--headless")  # => 为Chrome配置无头模式
     # 获取浏览器对象
-    driver = webdriver.Chrome(chrome_options=ch_options)
+    # driver = webdriver.Chrome(chrome_options=ch_options)
+    driver = webdriver.Chrome(chrome_options=ch_options, executable_path="/home/root/chromedriver")
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def time_is_true(self):
