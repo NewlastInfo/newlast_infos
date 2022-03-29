@@ -8,7 +8,7 @@ import asyncio
 import aiohttp
 import pymysql
 from loguru import logger
-from aioRequests import AioRequests
+
 from dingTalk_ke import DingTalks
 from settings import *
 from lxml import etree

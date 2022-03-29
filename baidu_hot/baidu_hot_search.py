@@ -9,7 +9,6 @@ import datetime
 import asyncio
 import aiohttp
 import pymysql
-from aioRequests import AioRequests
 from dingTalk_baidu_hot import DingTalks
 from settings import *
 from lxml import etree
@@ -20,7 +19,7 @@ logger.add("./Log/{time}_file.txt", rotation="00:00", retention='30 days', compr
 
 
 class BaiDuHotSearch:
-    session = AioRequests()
+    # session = AioRequests()
     mysql_host = MYSQL_HOST
     mysql_user = MYSQL_USER
     mysql_port = MYSQL_PORT
@@ -42,7 +41,6 @@ class BaiDuHotSearch:
         )
         return req_params
 
-    @logger.catch  # 添加日志装饰器，自动记录代码异常处
     async def get_baidu_hot_search(self):
         req_params = self.get_req_params()
         async with aiohttp.ClientSession() as session:
@@ -66,7 +64,6 @@ class BaiDuHotSearch:
                     await self.insert_baidu_hot_info_data(tuple_sql)
         time.sleep(3 * 60 * 60)
 
-    @logger.catch  # 添加日志装饰器，自动记录代码异常处
     async def insert_baidu_hot_info_data(self, tuple_sql: tuple):
         """
         1、20220105新增MySQL存储
@@ -101,7 +98,6 @@ class BaiDuHotSearch:
             pass
 
 
-@logger.catch  # 添加日志装饰器，自动记录代码异常处
 def baidu_main():
     while True:
         try:
