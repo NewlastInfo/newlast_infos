@@ -22,20 +22,24 @@ class WhiteAlcohol:
     ch_options.add_argument("--headless")  # => 为Chrome配置无头模式
     # 获取浏览器对象
     # driver = webdriver.Chrome(chrome_options=ch_options)
-    driver = webdriver.Chrome(chrome_options=ch_options, executable_path="/home/root/chromedriver")
+    driver = webdriver.Chrome(executable_path="/home/root/chromedriver", chrome_options=ch_options)
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def time_is_true(self):
-        year = repr(datetime.datetime.now().year)
-        month = repr(datetime.datetime.now().month)
-        day = repr(datetime.datetime.now().day)
-        hour = int(repr(datetime.datetime.now().hour))
-        year_month_day = year + month + day
+        try:
+            year = repr(datetime.datetime.now().year)
+            month = repr(datetime.datetime.now().month)
+            day = repr(datetime.datetime.now().day)
+            hour = int(repr(datetime.datetime.now().hour))
+            year_month_day = year + month + day
 
-        week_what = int(datetime.datetime.strptime(year_month_day, "%Y%m%d").weekday() + 1) + 8
-        if 0 < week_what < 6 and 8 <= hour <= 15:
-            return True
-        return False
+            week_what = int(datetime.datetime.strptime(year_month_day, "%Y%m%d").weekday() + 1)
+            # if 0 < week_what < 6 and 8 <= hour <= 15:
+            if 0 < week_what < 6:
+                return True
+            return False
+        except Exception:
+            return False
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def get_white_alcohol_code(self):
