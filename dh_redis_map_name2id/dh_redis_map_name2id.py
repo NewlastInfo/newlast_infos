@@ -37,7 +37,6 @@ class DhName2id:
         time.sleep(30 * 60)
 
 
-@logger.catch  # 添加日志装饰器，自动将代码异常处记录
 def return_dh_name2id():
     while True:
         try:
