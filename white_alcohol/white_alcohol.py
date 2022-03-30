@@ -37,7 +37,7 @@ class WhiteAlcohol:
             year = repr(datetime.datetime.now().year)
             month = repr(datetime.datetime.now().month)
             day = repr(datetime.datetime.now().day)
-            hour = int(repr(datetime.datetime.now().hour))
+            hour = int(repr(datetime.datetime.now().hour)) + 8
             year_month_day = year + month + day
             week_what = int(datetime.datetime.strptime(year_month_day, "%Y%m%d").weekday() + 1)
             if 0 < week_what < 6 and 8 <= hour <= 15:
@@ -61,8 +61,9 @@ class WhiteAlcohol:
                     proportion_rate = ''.join(phone_html_info.xpath('./td/text()')).strip()
                     high_low_rate = ''.join(phone_html_info.xpath('./td/span//text()')).strip()
                     # public_time = str(datetime.datetime.now().date())
-                    # message = f'时间：{public_time};\n股票名称：{stock_name};\n占比：{proportion_rate};\n涨跌率：{high_low_rate};'
-                    message = f'股票名称：{stock_name};\n股票占比：{proportion_rate};\n涨跌率  ：{high_low_rate};'
+                    hour = int(repr(datetime.datetime.now().hour)) + 8
+                    message = f'股票时间：{hour};\n股票名称：{stock_name};\n占比：{proportion_rate};\n涨跌率：{high_low_rate};'
+                    # message = f'股票名称：{stock_name};\n股票占比：{proportion_rate};\n涨跌率  ：{high_low_rate};'
                     DingTalks.compose(message)
                     time.sleep(10)
             except Exception as e:
