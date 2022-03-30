@@ -8,6 +8,7 @@ COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
 RUN apt-key add /home/root/linux_signing_key.pub
 RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 RUN apt-get update
+RUN apt-get install vim
 RUN apt-get -y install google-chrome-stable
 
 ### 复制浏览器驱动linux版本到docker容器内并且编译安装浏览器驱动

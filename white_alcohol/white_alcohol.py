@@ -39,10 +39,9 @@ class WhiteAlcohol:
             day = repr(datetime.datetime.now().day)
             hour = int(repr(datetime.datetime.now().hour))
             year_month_day = year + month + day
-
             week_what = int(datetime.datetime.strptime(year_month_day, "%Y%m%d").weekday() + 1)
-            # if 0 < week_what < 6 and 8 <= hour <= 15:
-            if 0 < week_what < 6:
+            if 0 < week_what < 6 and 8 <= hour <= 15:
+                # if 0 < week_what < 6:
                 return True
             return False
         except Exception:
