@@ -69,11 +69,13 @@ class WhiteAlcohol:
 @logger.catch  # 添加日志装饰器，自动将代码异常处记录
 def return_white_alcohol():
     while True:
-        try:
-            white_alcohol = WhiteAlcohol()
-            white_alcohol.get_white_alcohol_code()
-        except Exception as e:
-            print(f'error is {e}')
+        # try:
+        #     white_alcohol = WhiteAlcohol()
+        #     white_alcohol.get_white_alcohol_code()
+        # except Exception as e:
+        #     print(f'error is {e}')
+        print(88888888888888888)
+        time.sleep(60)
 
 
 if __name__ == '__main__':
