@@ -3,7 +3,7 @@
 FROM python:3.7
 
 RUN apt-get update
-RUN apt-get install vim
+RUN apt-get -y install vim
 # RUN apt-get -y install zip
 RUN apt-get -y install unzip
 
