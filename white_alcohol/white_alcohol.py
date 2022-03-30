@@ -6,19 +6,31 @@ from selenium import webdriver
 from lxml import etree
 from selenium.webdriver.chrome.options import Options  # => 引入Chrome的配置
 from dingTalk_white_alchol import DingTalks
+from selenium.webdriver import ChromeOptions
 
 
 class WhiteAlcohol:
     def __init__(self):
         self.url = "http://fund.eastmoney.com/161725.html"
 
-    # 配置
-    ch_options = Options()
-    ch_options.add_argument("--headless")  # => 为Chrome配置无头模式
-    # 获取浏览器对象
-    # driver = webdriver.Chrome(chrome_options=ch_options)
-    ch_options.add_argument("--no-sandbox")  #
-    driver = webdriver.Chrome(executable_path="/home/root/chromedriver", chrome_options=ch_options)
+    def driver(self):
+        chrome_options = Options()
+        chrome_options.add_argument('--no-sandbox')  # 解决DevToolsActivePort文件不存在的报错
+        chrome_options.add_argument('window-size=1920x1080')  # 指定浏览器分辨率
+        chrome_options.add_argument('--disable-gpu')  # 谷歌文档提到需要加上这个属性来规避bug
+        chrome_options.add_argument('log-level=3')
+        chrome_options.add_argument('headless')
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("lang=zh_CN.UTF-8")
+
+        """ 实现规避检测 """
+        option = ChromeOptions()
+        option.add_experimental_option('excludeSwitches', ['enable-automation'])
+
+        # 添加参数
+        browser = webdriver.Chrome(executable_path="/home/root/chromedriver", chrome_options=chrome_options,
+                                   options=option)
+        return browser
 
     def time_is_true(self):
         try:
@@ -39,9 +51,10 @@ class WhiteAlcohol:
     def get_white_alcohol_code(self):
         time_is_true = self.time_is_true()
         if time_is_true:
-            self.driver.get(self.url)
+            browser = self.driver()
+            browser.get(self.url)
             time.sleep(10)
-            html_code = etree.HTML(self.driver.page_source)
+            html_code = etree.HTML(browser.page_source)
             phone_html_infos = html_code.xpath('//li[@id="position_shares"]//tbody/tr')
             try:
                 for phone_html_info in phone_html_infos[1:]:
