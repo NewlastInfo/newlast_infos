@@ -40,7 +40,7 @@ class WhiteAlcohol:
             hour = int(repr(datetime.datetime.now().hour)) + 8
             year_month_day = year + month + day
             week_what = int(datetime.datetime.strptime(year_month_day, "%Y%m%d").weekday() + 1)
-            if 0 < week_what < 6 and 8 <= hour <= 15:
+            if 0 < week_what < 6 and 9 <= hour <= 15:
                 # if 0 < week_what < 6:
                 return True
             return False
@@ -52,7 +52,6 @@ class WhiteAlcohol:
         if time_is_true:
             browser = self.driver()
             browser.get(self.url)
-            time.sleep(10)
             html_code = etree.HTML(browser.page_source)
             phone_html_infos = html_code.xpath('//li[@id="position_shares"]//tbody/tr')
             try:
@@ -65,7 +64,6 @@ class WhiteAlcohol:
                     message = f'股票时间：{hour};\n股票名称：{stock_name};\n占比：{proportion_rate};\n涨跌率：{high_low_rate};'
                     # message = f'股票名称：{stock_name};\n股票占比：{proportion_rate};\n涨跌率  ：{high_low_rate};'
                     DingTalks.compose(message)
-                    time.sleep(10)
             except Exception as e:
                 print(e)
             time.sleep(60 * 30)
