@@ -14,7 +14,7 @@ dateparser
 Pillow==8.1.2
 protobuf==3.15.8
 pyaml==20.4.0
-collections
+
 pytz==2021.1
 PyYAML==5.4.1
 redis==3.5.3
