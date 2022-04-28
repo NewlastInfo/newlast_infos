@@ -58,7 +58,7 @@ class PriceApiErr(DingTalks):
 
     def return_ok(self):
         try:
-            response = requests.get(url=self.url, headers=self.headers)
+            response = requests.get(url=self.url, headers=self.headers, timeout=1.8)
             if response.status_code == 200:
                 return
             else:
@@ -66,8 +66,8 @@ class PriceApiErr(DingTalks):
                 print(f"爬价接口异常，请立即恢复")
                 self.compose(msg)
         except Exception:
-            msg = f"爬价接口异常，请立即恢复"
-            print(f"爬价接口异常，请立即恢复")
+            msg = f"爬价接口超时，请立即恢复"
+            print(f"爬价接口超时，请立即恢复")
             self.compose(msg)
 
 
