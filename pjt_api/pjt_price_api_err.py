@@ -63,11 +63,11 @@ class PriceApiErr(DingTalks):
                 return
             else:
                 msg = f"爬价接口异常，请立即恢复"
-                print(f"爬价接口异常，请立即恢复")
+                print(f"{msg}")
                 self.compose(msg)
         except Exception:
             msg = f"爬价接口超时，请检查"
-            print(f"爬价接口超时，请检查")
+            print(f"{msg}")
             self.compose(msg)
 
 
