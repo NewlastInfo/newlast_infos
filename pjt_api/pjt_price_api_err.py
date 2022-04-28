@@ -58,7 +58,7 @@ class PriceApiErr(DingTalks):
 
     def return_ok(self):
         try:
-            response = requests.get(url=self.url, headers=self.headers, timeout=1.8)
+            response = requests.get(url=self.url, headers=self.headers, timeout=3.8)
             if response.status_code == 200:
                 return
             else:
