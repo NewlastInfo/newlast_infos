@@ -26,11 +26,18 @@ class KeInfo:
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def get_req_params(self):
-        url = "https://36kr.com/information/technology/"
+        url = 'https://36kr.com/information/technology/'
         headers = {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-            "referer": "https://36kr.com/information/technology/",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", }
+            "accept-encoding": "gzip, deflate, br",
+            "cache-control": "max-age=0",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
+        }
         req_params = dict(
             url=url,
             headers=headers,
@@ -40,7 +47,8 @@ class KeInfo:
 
     def get_36ke_venture_capital(self):
         req_params = self.get_req_params()
-        res_code = requests.get(req_params.get('url'), req_params.get('headers')).text
+        res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
+        # print(res_code)
         html = etree.HTML(res_code)
         html_infos = html.xpath(
             '//div[@class="information-flow-list"]//div[@class="article-item-info clearfloat"]')
@@ -84,21 +92,21 @@ class KeInfo:
                 conn.close()
                 title, info_url, summary, author, public_time = tuple_sql
                 message = f'标题：{title};\n链接：{info_url};\n概要：{summary};\n作者：{author};\n时间：{public_time};'
+                print(message)
                 DingTalks.compose(message)
             except Exception as e:
-
+                print(e)
                 conn.close()
                 pass
         except Exception as w:
+            print(w)
             pass
 
 
 def ke_main():
     while True:
         try:
-
             KeInfo().get_36ke_venture_capital()
-
         except Exception as e:
             pass
 
