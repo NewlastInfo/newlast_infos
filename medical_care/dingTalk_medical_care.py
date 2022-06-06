@@ -11,9 +11,9 @@ from urllib.parse import quote_plus
 
 
 class DingTalks:
-    access_token = '50f1c026bbfe4f27ccff203f6d9cf7b4a7ed7ec0593202a9d07f9f82097d4f43'
+    access_token = 'dfaacd01d2c0cb95a4cc7ecd1dccf55f1d036db6b26f0783788de19d7420bf5c'
     webhook = f'https://oapi.dingtalk.com/robot/send?access_token={access_token}'
-    secret = 'SEC0b2582568b3e082befe5e4555ce79f225dc3cf453ecb41fc159a97b3fffb2d6d'
+    secret = 'SEC4d44e711f7877e253f9468260eaad2ef20e6f1ad0d2b6441589c6f7b5fcbe815'
 
     headers = {'Content-Type': 'application/json'}
 
