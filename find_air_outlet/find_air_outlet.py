@@ -56,7 +56,7 @@ class FindAirOutlet:
             html_code = etree.HTML(browser.page_source)
             phone_html_infos = html_code.xpath('//div[@class="dataview-body"]//tbody/tr')
             try:
-                for phone_html_info in phone_html_infos[:10]:  # 只取前10个风口行业
+                for phone_html_info in phone_html_infos[:3]:  # 只取前3个风口行业
                     industry_sort_num = ''.join(phone_html_info.xpath('./td[1]//text()')).strip()
                     industry_name = ''.join(phone_html_info.xpath('./td[2]/a//text()')).strip()
                     high_low_rate = ''.join(phone_html_info.xpath('./td[4]/span//text()')).strip()
