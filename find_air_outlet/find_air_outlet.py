@@ -121,9 +121,8 @@ class FindAirOutlet:
  \
                               f'\n今日主力净流入最大股名称：{The_largest_net_inflow_of_major_stocks_today_name};'
                     DingTalks.compose(message)
-                DingTalks.compose('间隔1')
-                DingTalks.compose('间隔2')
-                DingTalks.compose('间隔3')
+                DingTalks.compose('间隔')
+
             except Exception as e:
                 print(e)
             time.sleep(60 * 30)
