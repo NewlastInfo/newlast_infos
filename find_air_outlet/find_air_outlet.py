@@ -99,7 +99,7 @@ class FindAirOutlet:
 
                     # public_time = str(datetime.datetime.now().date())
                     hour = int(repr(datetime.datetime.now().hour)) + 8
-                    message = f'找风口的时间：{hour};' \
+                    message = f'找风口的时间：{hour}时;' \
  \
                               f'\n风口行业顺序：{industry_sort_num};' \
  \
@@ -121,6 +121,9 @@ class FindAirOutlet:
  \
                               f'\n今日主力净流入最大股名称：{The_largest_net_inflow_of_major_stocks_today_name};'
                     DingTalks.compose(message)
+                DingTalks.compose('间隔1')
+                DingTalks.compose('间隔2')
+                DingTalks.compose('间隔3')
             except Exception as e:
                 print(e)
             time.sleep(60 * 30)
