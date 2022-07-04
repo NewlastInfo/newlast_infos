@@ -76,9 +76,9 @@ def pjt_main():
         try:
             price_api_err = PriceApiErr()
             price_api_err.return_ok()
-            time.sleep(30 * 10)
+            time.sleep(30)
         except Exception as e:
-            time.sleep(30 * 10)
+            time.sleep(61)
 
 
 if __name__ == '__main__':
