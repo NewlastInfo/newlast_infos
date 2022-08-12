@@ -1,4 +1,5 @@
-FROM hsb-tcr.tencentcloudcr.com/hsb/alpine-py3
+#FROM hsb-tcr.tencentcloudcr.com/hsb/alpine-py3
+FROM python:3.7
 ### 复制依赖包到服务项目目录下
 COPY requirements.txt /home/devenv/zjc/hsb_pajia_spider/requirements.txt
 ### 下载 python 项目的依赖库
