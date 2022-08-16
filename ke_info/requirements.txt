@@ -46,3 +46,8 @@ uvicorn==0.14.0
 yarl==1.6.3
 pyhive==0.6.1
 PyExecJS==1.5.1
+dateparser
+selenium==3.141.0
+loguru==0.5.0
+lxml==4.3.3
+fake-useragent==0.1.11
