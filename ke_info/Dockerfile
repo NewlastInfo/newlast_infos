@@ -2,9 +2,10 @@
 ### 以python:3.7来作为基础镜像
 FROM python:3.7
 
+# apt-get也应该添加加速包的
 RUN apt-get update
 RUN apt-get -y install vim
-# RUN apt-get -y install zip
+# RUN apt-get -y install zip # apt-get也应该添加加速包的
 RUN apt-get -y install unzip
 
 ### 创建工作目录
