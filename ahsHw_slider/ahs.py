@@ -9,7 +9,8 @@ import redis
 import pymysql
 import random
 
-REDIS_HOST = '193.112.98.154'
+# REDIS_HOST = '193.112.98.154'
+REDIS_HOST = '10.10.3.200'
 REDIS_PASSWORD = 'd2hvYW1pOmlhbXdobw=='
 REDIS_DB = 6
 
@@ -17,7 +18,7 @@ REDIS_DB = 6
 def return_cookie():
     ahsHw_cookie_name = "token:accounts:ahsHw_cookie"
 
-    prod_r = redis.Redis(host='193.112.98.154', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
+    prod_r = redis.Redis(host='10.10.3.200', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
     ahsHw_cookie = prod_r.hget(ahsHw_cookie_name, 'ahsHw_cookie')
     return ahsHw_cookie
 
@@ -51,7 +52,7 @@ class AhsHwCookie(object):
 
     def return_cookie(self):
         ahsHw_cookie_name = "token:accounts:ahsHw_cookie"
-        prod_r = redis.Redis(host='193.112.98.154', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
+        prod_r = redis.Redis(host='10.10.3.200', password='d2hvYW1pOmlhbXdobw==', db=6, decode_responses=True)
         ahsHw_cookie = prod_r.hget(ahsHw_cookie_name, 'ahsHw_cookie')
         return ahsHw_cookie
 
