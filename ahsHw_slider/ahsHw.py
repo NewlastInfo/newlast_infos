@@ -9,7 +9,8 @@ import redis
 import pymysql
 import random
 
-REDIS_HOST = '193.112.98.154'
+# REDIS_HOST = '193.112.98.154'
+REDIS_HOST = '10.10.3.200'
 REDIS_PASSWORD = 'd2hvYW1pOmlhbXdobw=='
 REDIS_DB = 6
 
