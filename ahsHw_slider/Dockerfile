@@ -2,10 +2,6 @@
 ### 以python:3.7来作为基础镜像
 FROM python:3.7
 
-RUN apt-get update
-RUN apt-get -y install vim
-# RUN apt-get -y install zip
-RUN apt-get -y install unzip
 
 ### 创建工作目录
 RUN mkdir /spiders
