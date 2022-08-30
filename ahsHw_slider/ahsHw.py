@@ -125,7 +125,8 @@ class AhsHwCookie(object):
 
         try:
             price_num = res.json().get("data")[0].get('price')
-        except Exception as e:
+        except Exception as e1111111111:
+            print('e111111111', e1111111111)
             price_num = None
         print('price_num:', price_num)
         if not price_num:
@@ -168,5 +169,6 @@ if __name__ == '__main__':
                 break
 
 
-        except Exception:
+        except Exception as e3242342342:
+            print('e3324234324:', e3242342342)
             continue
