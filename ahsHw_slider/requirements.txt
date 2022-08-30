@@ -3,7 +3,6 @@
 attrs==20.3.0
 chardet==4.0.0
 
-numpy==1.19.3
 
 pymysql
 dateparser
