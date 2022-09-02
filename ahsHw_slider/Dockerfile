@@ -2,8 +2,6 @@
 ### 以python:3.7来作为基础镜像
 FROM python:3.7
 
-RUN apt-get update
-RUN apt-get -y install vim
 
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
