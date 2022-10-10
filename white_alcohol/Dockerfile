@@ -9,7 +9,8 @@ COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
 
 RUN apt-key add /home/root/linux_signing_key.pub
 RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+
+RUN apt-get install -y apt-transport-https
 RUN apt-get update
 RUN apt-get -y install vim
 RUN apt-get -y install google-chrome-stable
