@@ -3,6 +3,11 @@
 ### 以python:3.7来作为基础镜像
 FROM python:3.7
 #FROM hsb-tcr.tencentcloudcr.com/hsb/centos-py3-bi:latest
+# 设置时区，避免晚8小时
+ENV TZ="Asia/Shanghai"
+
+RUN apt-get update
+RUN apt-get -y install vim
 
 ### 将dockerfile目录下的谷歌浏览器安装包和浏览器驱动安装包复制到docker容器内
 COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
@@ -10,9 +15,6 @@ COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
 RUN apt-key add /home/root/linux_signing_key.pub
 RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 
-RUN apt-get install -y apt-transport-https
-RUN apt-get update
-RUN apt-get -y install vim
 RUN apt-get -y install google-chrome-stable
 
 ### 复制浏览器驱动linux版本到docker容器内并且编译安装浏览器驱动
