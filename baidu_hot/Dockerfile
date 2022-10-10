@@ -2,6 +2,9 @@
 ### 以python:3.7来作为基础镜像
 FROM python:3.7
 
+# 设置时区，避免晚8小时
+ENV TZ="Asia/Shanghai"
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get -y install vim
 # RUN apt-get -y install zip

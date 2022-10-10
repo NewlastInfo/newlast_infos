@@ -9,13 +9,16 @@ RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' 
 RUN apt-get update
 RUN apt-get -y install vim
 
-### 将dockerfile目录下的谷歌浏览器安装包和浏览器驱动安装包复制到docker容器内
-COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
-
-RUN apt-key add /home/root/linux_signing_key.pub
-RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-
-RUN apt-get -y install google-chrome-stable
+#### 将dockerfile目录下的谷歌浏览器安装包和浏览器驱动安装包复制到docker容器内
+#COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
+#
+#RUN apt-key add /home/root/linux_signing_key.pub
+#RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+#
+#RUN apt-get -y install google-chrome-stable
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+RUN apt-get update && apt-get install -y google-chrome-stable
 
 ### 复制浏览器驱动linux版本到docker容器内并且编译安装浏览器驱动
 # COPY chromedriver_linux64.zip  /usr/local/python37/bin/
