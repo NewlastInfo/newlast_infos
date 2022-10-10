@@ -1,8 +1,8 @@
 
  
 ### 以python:3.7来作为基础镜像
-#FROM python:3.7
-FROM hsb-tcr.tencentcloudcr.com/hsb/centos-py3-bi:latest
+FROM python:3.7
+#FROM hsb-tcr.tencentcloudcr.com/hsb/centos-py3-bi:latest
 
 ### 将dockerfile目录下的谷歌浏览器安装包和浏览器驱动安装包复制到docker容器内
 COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
