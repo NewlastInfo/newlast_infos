@@ -26,7 +26,8 @@ class KeInfo:
 
     @logger.catch  # 添加日志装饰器，自动将代码异常处记录
     def get_req_params(self):
-        url = 'https://36kr.com/information/technology/'
+        # url = 'https://36kr.com/information/technology/'
+        url = 'https://36kr.com/information/web_news/'
         headers = {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "accept-encoding": "gzip, deflate, br",
@@ -61,11 +62,10 @@ class KeInfo:
             author = ''.join(html_info.xpath('.//a[contains(@class,"author")]//text()')).strip()
             public_time_str = ''.join(html_info.xpath('.//span[contains(@class,"bar-time")]//text()')).strip()
             public_time = str(dateparser.parse(public_time_str)).split('.')[0].strip()
-            time.sleep(30)
+            time.sleep(10)
             tuple_sql = (title, info_url, summary, author, public_time,)
             # print(tuple_sql)
             self.insert_ke_data(tuple_sql)
-        time.sleep(60 * 60)
 
     def insert_ke_data(self, tuple_sql: tuple):
         """
