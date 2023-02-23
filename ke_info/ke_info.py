@@ -62,7 +62,7 @@ class KeInfo:
             author = ''.join(html_info.xpath('.//a[contains(@class,"author")]//text()')).strip()
             public_time_str = ''.join(html_info.xpath('.//span[contains(@class,"bar-time")]//text()')).strip()
             public_time = str(dateparser.parse(public_time_str)).split('.')[0].strip()
-            time.sleep(10)
+            time.sleep(60)
             tuple_sql = (title, info_url, summary, author, public_time,)
             # print(tuple_sql)
             self.insert_ke_data(tuple_sql)
