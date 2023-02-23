@@ -5,11 +5,11 @@ FROM python:3.7
 # apt-get也应该添加加速包的
 # 设置时区，避免晚8小时
 ENV TZ="Asia/Shanghai"
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get -y install vim
+#RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
+#RUN apt-get update
+#RUN apt-get -y install vim
 # RUN apt-get -y install zip # apt-get也应该添加加速包的
-RUN apt-get -y install unzip
+#RUN apt-get -y install unzip
 
 ### 创建工作目录
 RUN mkdir /spiders
