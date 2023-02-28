@@ -60,16 +60,16 @@ class KeInfo:
         print(len(html_infos))
         for html_info in html_infos:
             title = ''.join(html_info.xpath('.//a[contains(@class,"m-title")]//text()')).strip()
-            info_url = self.ke_head_url + ''.join(
-                html_info.xpath('.//a[contains(@class,"m-title")]/@href')).strip()
+            info_url = ''.join(html_info.xpath('.//a[contains(@class,"m-title")]/@href')).strip()
             summary = ''.join(html_info.xpath('.//a[contains(@class,"m-description")]//text()')).strip()
             author = ''.join(html_info.xpath('.//a[contains(@class,"author")]//text()')).strip()
             public_time_str = ''.join(html_info.xpath('.//span[contains(@class,"bar-time")]//text()')).strip()
             public_time = str(dateparser.parse(public_time_str)).split('.')[0].strip()
-
-            tuple_sql = (title, info_url, summary, author, public_time,)
-            # print(tuple_sql)
-            self.insert_ke_data(tuple_sql)
+            if info_url:
+                info_url = self.ke_head_url + info_url
+                tuple_sql = (title, info_url, summary, author, public_time,)
+                # print(tuple_sql)
+                self.insert_ke_data(tuple_sql)
         time.sleep(60 * 30)
 
     def insert_ke_data(self, tuple_sql: tuple):
