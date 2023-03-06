@@ -54,6 +54,9 @@ class CnyToOthersInfo:
             # print(tuple_sql)
             self.insert_ke_data(tuple_sql)
         time.sleep(60 * 60 * 10)
+        DingTalks.compose('**************分界线*******************')
+        DingTalks.compose('**************分界线*******************')
+        DingTalks.compose('**************分界线*******************')
 
     def insert_ke_data(self, tuple_sql: tuple):
         """
