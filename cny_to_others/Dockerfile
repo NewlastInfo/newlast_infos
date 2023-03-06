@@ -14,10 +14,10 @@ ENV TZ="Asia/Shanghai"
 ### 创建工作目录
 RUN mkdir /spiders
 ### 将python项目复制到 /spider工作目录下
-COPY cny_to_usd_and_others.py  /spiders/ke_info.py
+COPY cny_to_usd_and_others.py  /spiders/cny_to_usd_and_others.py
 
 COPY settings.py  /spiders/settings.py
-COPY dingTalk_cny.py  /spiders/dingTalk_ke.py
+COPY dingTalk_cny.py  /spiders/dingTalk_cny.py
 
 COPY requirements.txt /spiders/requirements.txt
 ### 设置 /spider 为工作目录
@@ -25,4 +25,4 @@ COPY requirements.txt /spiders/requirements.txt
 RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r /spiders/requirements.txt
 ### 最后一步，运行docker镜像时运行自己的python项目
 ### 可以多个参数： CMD ["python3","a","main.py"]
-CMD ["python3" ,"/spiders/ke_info.py"]
+CMD ["python3" ,"/spiders/cny_to_usd_and_others.py"]
