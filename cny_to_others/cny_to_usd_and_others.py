@@ -3,12 +3,9 @@
 import json
 import re
 import time
-import dateparser
-import asyncio
 import requests
 import pymysql
 from loguru import logger
-
 from dingTalk_cny import DingTalks
 from settings import *
 from lxml import etree
