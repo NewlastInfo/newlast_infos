@@ -44,7 +44,7 @@ class CnyToOthersInfo:
     def get_cny_info(self):
         req_params = self.get_req_params()
         response = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).json()
-        response_json = response.get('records')
+        response_json = response.get('records')[:10]
         lastDate = response.get('data').get('lastDate')
         for response_data in response_json:
             price = response_data.get('price')
@@ -54,8 +54,6 @@ class CnyToOthersInfo:
             # print(tuple_sql)
             self.insert_ke_data(tuple_sql)
         time.sleep(60 * 60 * 10)
-        DingTalks.compose('**************分界线*******************')
-        DingTalks.compose('**************分界线*******************')
         DingTalks.compose('**************分界线*******************')
 
     def insert_ke_data(self, tuple_sql: tuple):
