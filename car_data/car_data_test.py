@@ -12,6 +12,7 @@ from lxml import etree
 
 url = "https://xl.16888.com/ranking-1.html"
 url = "https://xl.16888.com/ranking-1.html"
+url = "https://www.itjuzi.com/unicorn"
 # url = "https://xl.16888.com/brand.html"
 
 headers = {
