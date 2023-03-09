@@ -1,7 +1,8 @@
 
  
 ### 以python:3.7来作为基础镜像
-FROM python:3.7
+#FROM python:3.7
+FROM python:3.7.15
 
 # 设置时区，避免晚8小时
 ENV TZ="Asia/Shanghai"
