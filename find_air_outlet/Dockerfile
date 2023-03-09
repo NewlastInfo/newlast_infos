@@ -5,7 +5,11 @@ FROM python:3.7
 
 # 设置时区，避免晚8小时
 ENV TZ="Asia/Shanghai"
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
+#RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
+
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
+
 RUN apt-get update
 RUN apt-get -y install vim
 
