@@ -31,7 +31,7 @@ RUN apt-get -y install unzip
 #RUN unzip   chromedriver_linux64.zip
 RUN ls
 #RUN cp chromedriver /home/root/chromedriver
-RUN apt-get -y install vim
+#RUN apt-get -y install vim
 
 ### 创建工作目录
 RUN mkdir /spiders
