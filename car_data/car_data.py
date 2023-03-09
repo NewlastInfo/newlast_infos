@@ -87,7 +87,7 @@ class CarInfo:
             old_sell_count = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             rise_rate = ''.join(html_info.xpath('.//td[6]//text()')).strip()
 
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n车型：{product};\n级别：{level};\n{new_sell_count_name}：{new_sell_count};\n{old_sell_count_name}：{old_sell_count};\n增长率：{rise_rate};'
+            message = f'**汽车销量降幅排行榜**\n排名：{ranking};\n车型：{product};\n级别：{level};\n{new_sell_count_name}：{new_sell_count};\n{old_sell_count_name}：{old_sell_count};\n增长率：{rise_rate};'
             print(message)
             DingTalks.compose(message)
 
@@ -113,7 +113,7 @@ class CarInfo:
             sell_count = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             ratio = ''.join(html_info.xpath('.//td[6]//text()')).strip()
 
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n品牌名称：{brand};\n国家：{country};\n销量：{sell_count};\n品牌份额：{ratio};'
+            message = f'**汽车品牌销量**\n排名：{ranking};\n品牌名称：{brand};\n国家：{country};\n销量：{sell_count};\n品牌份额：{ratio};'
             print(message)
             DingTalks.compose(message)
         time.sleep(60 * 60 * 10)
@@ -137,7 +137,7 @@ class CarInfo:
             sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
             company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
+            message = f'**车型销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
         time.sleep(60 * 60 * 10)
@@ -161,7 +161,7 @@ class CarInfo:
             sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
             company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
+            message = f'**电动车销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
         time.sleep(60 * 60 * 10)
@@ -185,7 +185,7 @@ class CarInfo:
             sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
             company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
+            message = f'**家用轿车销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
         time.sleep(60 * 60 * 10)
@@ -209,7 +209,7 @@ class CarInfo:
             sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
             company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
-            message = f'**汽车销量增幅排行榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
+            message = f'**SUV销量榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
         time.sleep(60 * 60 * 10)
