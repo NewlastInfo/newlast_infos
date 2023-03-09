@@ -53,22 +53,27 @@
 FROM python:3.8-slim-buster
 
 # 安装必要的软件包
-RUN apt-get update && \
-    apt-get -yq --no-install-recommends install \
-    wget \
-    curl \
-    gnupg2 \
-    unzip \
-    xvfb \
-    libxi6 \
-    libgconf-2-4 \
-    libnss3 \
-    libasound2 \
-    libxtst6 \
-    libgtk-3-0 \
-    libatk-bridge2.0-0 \
-    fonts-liberation \
-    && apt-get clean
+#RUN apt-get update && \
+#    apt-get -yq --no-install-recommends install \
+#    wget \
+#    curl \
+#    gnupg2 \
+#    unzip \
+#    xvfb \
+#    libxi6 \
+#    libgconf-2-4 \
+#    libnss3 \
+#    libasound2 \
+#    libxtst6 \
+#    libgtk-3-0 \
+#    libatk-bridge2.0-0 \
+#    fonts-liberation \
+#    && apt-get clean
+
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
+
+RUN apt-get update
 
 # 下载并安装Chrome浏览器和驱动程序
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
