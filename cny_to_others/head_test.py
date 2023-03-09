@@ -17,21 +17,17 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,vi;q=0.7
 Cache-Control: max-age=0
 Connection: keep-alive
-Cookie: browserDetectorTips=1; apache=bbfde8c184f3e1c6074ffab28a313c87; lss=f7cb2cf4b1607aec30e411e90d47c685; _ulta_id.CM-Prod.e9dc=85f7316f92da84d6; _ulta_ses.CM-Prod.e9dc=ebd65b0ad4aaaebe; isLogin=0; AlteonP10=Ag1xPyw/F6xvdzR2bO1oeA$$
-Host: www.chinamoney.com.cn
-If-Modified-Since: Wed, 11 Jan 2023 06:59:03 GMT
-If-None-Match: "3c79-5f1f7891ae070"
-Referer: https://www.hao123.com/link/https/?key=http%3A%2F%2Fwww.chinamoney.com.cn%2Fchinese%2Findex.html&&monkey=m-site&c=F75C5209885E8EDD343CD29F32976FE6
+Cookie: qgqp_b_id=28aa01099e9d10abb71f87046fc41705; st_si=16726273495621; AUTH_FUND.EASTMONEY.COM_GSJZ=AUTH*TTJJ*TOKEN; fund_trade_trackid=A9HQ/orsh0KHIDj0A6I6MFuZTovw5yOhjRwRDweccO4jT15I561PxnTVH39wxuzAe4XNk7jnib7uPWaccgjsoQ==; LToken=a89b0ea7d0fd44d28fcbe8a0ab09fb5c; st_asi=delete; st_pvi=74497741461518; st_sp=2022-09-05%2015%3A17%3A59; st_inirUrl=https%3A%2F%2Fwww.hao123.com%2Flink%2Fhttps%2F; st_sn=749; st_psi=20230309163942967-113300300820-5558731879
+Host: data.eastmoney.com
 sec-ch-ua: "Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"
 sec-ch-ua-mobile: ?0
 sec-ch-ua-platform: "Windows"
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: cross-site
+Sec-Fetch-Site: none
 Sec-Fetch-User: ?1
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36
-
 '''
     header_dict(header_request)
 
