@@ -37,7 +37,7 @@ class CarInfo:
         url = "https://xl.16888.com/ranking-1.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         new_sell_count_name = ''
@@ -58,6 +58,8 @@ class CarInfo:
             print(message)
             DingTalks.compose(message)
 
+        time.sleep(60 * 60 * 10)
+
     def get_16888_car_reduce_rise(self):
         """
         汽车销量降幅排行榜
@@ -67,7 +69,7 @@ class CarInfo:
         url = "https://xl.16888.com/ranking-2.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         print(len(html_infos))
@@ -89,6 +91,8 @@ class CarInfo:
             print(message)
             DingTalks.compose(message)
 
+        time.sleep(60 * 60 * 10)
+
     def get_16888_car_brand_ranking(self):
         """
         汽车品牌销量
@@ -98,7 +102,7 @@ class CarInfo:
         url = "https://xl.16888.com/brand.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def"]/tr')
 
@@ -112,6 +116,7 @@ class CarInfo:
             message = f'排名：{ranking};\n品牌名称：{brand};\n国家：{country};\n销量：{sell_count};\n品牌份额：{ratio};'
             print(message)
             DingTalks.compose(message)
+        time.sleep(60 * 60 * 10)
 
     def get_16888_car_product_selling_num(self):
         """
@@ -121,7 +126,7 @@ class CarInfo:
         url = "https://xl.16888.com/style.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         print(len(html_infos))
@@ -135,6 +140,7 @@ class CarInfo:
             message = f'排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
+        time.sleep(60 * 60 * 10)
 
     def get_16888_car_e_product_selling_num(self):
         """
@@ -144,7 +150,7 @@ class CarInfo:
         url = "https://xl.16888.com/ev.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         print(len(html_infos))
@@ -158,6 +164,7 @@ class CarInfo:
             message = f'排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
+        time.sleep(60 * 60 * 10)
 
     def get_16888_car_home_product_selling_num(self):
         """
@@ -167,7 +174,7 @@ class CarInfo:
         url = "https://xl.16888.com/car.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         print(len(html_infos))
@@ -181,6 +188,7 @@ class CarInfo:
             message = f'排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
+        time.sleep(60 * 60 * 10)
 
     def get_16888_car_suv_product_selling_num(self):
         """
@@ -190,7 +198,7 @@ class CarInfo:
         url = "https://xl.16888.com/suv.html"
         req_params = self.get_req_params(url)
         res_code = requests.get(url=req_params.get('url'), headers=req_params.get('headers')).text
-        
+
         html = etree.HTML(res_code)
         html_infos = html.xpath('//table[@class="xl-table-def xl-table-a"]/tr')
         print(len(html_infos))
@@ -204,6 +212,7 @@ class CarInfo:
             message = f'排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
+        time.sleep(60 * 60 * 10)
 
 
 def car_main():
@@ -218,7 +227,7 @@ def car_main():
             CarInfo().get_16888_car_suv_product_selling_num()
         except Exception as e:
             print(e)
-        time.sleep(60 * 60 * 18)
+        time.sleep(60 * 60 * 10)
 
 
 if __name__ == '__main__':
