@@ -7,7 +7,9 @@ FROM python:3.7
 ENV TZ="Asia/Shanghai"
 #RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 
+RUN apt-get update
 
 ### 将dockerfile目录下的谷歌浏览器安装包和浏览器驱动安装包复制到docker容器内
 COPY linux_signing_key.pub  /home/root/linux_signing_key.pub
