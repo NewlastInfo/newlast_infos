@@ -134,7 +134,9 @@ def return_data():
     while True:
         try:
             find_air_outlet = FindAirOutlet()
-            find_air_outlet.get_find_air_outlet_code()
+            # find_air_outlet.get_find_air_outlet_code()
+            print(8888888)
+            time.sleep(100)
         except Exception as e:
             print(f'error is {e}')
 
