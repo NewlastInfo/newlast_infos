@@ -12,7 +12,6 @@ pamqp==2.3.0
 pymysql
 dateparser
 Pillow==8.1.2
-protobuf==3.15.8
 pyaml==20.4.0
 
 pytz==2021.1

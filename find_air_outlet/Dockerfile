@@ -52,7 +52,7 @@
 
 
 FROM python:3.8
-
+RUN /usr/local/bin/python -m pip install --upgrade pip
 # 设置镜像源为国内站点
 RUN sed -i 's/archive.ubuntu.com/mirrors.tencentyun.com/g' /etc/apt/sources.list \
     && sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list \
