@@ -80,12 +80,12 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
 #    && mv chromedriver /usr/local/bin/
 
 RUN wget http://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
-# RUN apt-get -y install zip
+ RUN apt-get -y install zip
 RUN apt-get -y install unzip
 RUN unzip -c  chromedriver_linux64.zip
 RUN unzip   chromedriver_linux64.zip
 RUN ls
-RUN cp chromedriver /home/root/chromedriver
+#RUN cp chromedriver /home/root/chromedriver
 
 # 安装Python依赖
 COPY requirements.txt .
