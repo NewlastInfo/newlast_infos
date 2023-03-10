@@ -74,10 +74,18 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && apt-get update && apt-get install -y google-chrome-stable
 
 # 下载安装chromedriver
-RUN wget -q https://npm.taobao.org/mirrors/chromedriver/$(curl -s https://npm.taobao.org/mirrors/chromedriver/LATEST_RELEASE)/chromedriver_linux64.zip \
-    && unzip chromedriver_linux64.zip \
-    && rm -rf chromedriver_linux64.zip \
-    && mv chromedriver /usr/local/bin/
+#RUN wget -q https://npm.taobao.org/mirrors/chromedriver/$(curl -s https://npm.taobao.org/mirrors/chromedriver/LATEST_RELEASE)/chromedriver_linux64.zip \
+#    && unzip chromedriver_linux64.zip \
+#    && rm -rf chromedriver_linux64.zip \
+#    && mv chromedriver /usr/local/bin/
+
+RUN wget http://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
+# RUN apt-get -y install zip
+RUN apt-get -y install unzip
+RUN unzip -c  chromedriver_linux64.zip
+RUN unzip   chromedriver_linux64.zip
+RUN ls
+RUN cp chromedriver /home/root/chromedriver
 
 # 安装Python依赖
 COPY requirements.txt .
