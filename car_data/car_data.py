@@ -6,6 +6,7 @@ import requests
 from loguru import logger
 from dingTalk_car import DingTalks
 from lxml import etree
+import datetime
 
 
 class CarInfo:
@@ -58,7 +59,7 @@ class CarInfo:
             print(message)
             DingTalks.compose(message)
 
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_reduce_rise(self):
         """
@@ -91,7 +92,7 @@ class CarInfo:
             print(message)
             DingTalks.compose(message)
 
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_brand_ranking(self):
         """
@@ -116,7 +117,7 @@ class CarInfo:
             message = f'**汽车品牌销量**\n排名：{ranking};\n品牌名称：{brand};\n国家：{country};\n销量：{sell_count};\n品牌份额：{ratio};'
             print(message)
             DingTalks.compose(message)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_product_selling_num(self):
         """
@@ -134,13 +135,13 @@ class CarInfo:
         for html_info in html_infos[1:]:
             ranking = ''.join(html_info.xpath('.//td[1]//text()')).strip()
             product = ''.join(html_info.xpath('.//td[2]//text()')).strip()
-            sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
-            company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
-            price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
+            sell_count = ''.join(html_info.xpath('.//td[3]//text()')).strip()
+            company = ''.join(html_info.xpath('.//td[4]//text()')).strip()
+            price = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             message = f'**车型销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_e_product_selling_num(self):
         """
@@ -158,13 +159,13 @@ class CarInfo:
         for html_info in html_infos[1:]:
             ranking = ''.join(html_info.xpath('.//td[1]//text()')).strip()
             product = ''.join(html_info.xpath('.//td[2]//text()')).strip()
-            sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
-            company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
-            price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
+            sell_count = ''.join(html_info.xpath('.//td[3]//text()')).strip()
+            company = ''.join(html_info.xpath('.//td[4]//text()')).strip()
+            price = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             message = f'**电动车销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_home_product_selling_num(self):
         """
@@ -182,13 +183,13 @@ class CarInfo:
         for html_info in html_infos[1:]:
             ranking = ''.join(html_info.xpath('.//td[1]//text()')).strip()
             product = ''.join(html_info.xpath('.//td[2]//text()')).strip()
-            sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
-            company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
-            price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
+            sell_count = ''.join(html_info.xpath('.//td[3]//text()')).strip()
+            company = ''.join(html_info.xpath('.//td[4]//text()')).strip()
+            price = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             message = f'**家用轿车销量**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
     def get_16888_car_suv_product_selling_num(self):
         """
@@ -206,28 +207,31 @@ class CarInfo:
         for html_info in html_infos[1:]:
             ranking = ''.join(html_info.xpath('.//td[1]//text()')).strip()
             product = ''.join(html_info.xpath('.//td[2]//text()')).strip()
-            sell_count = ''.join(html_info.xpath('.//td[4]//text()')).strip()
-            company = ''.join(html_info.xpath('.//td[5]//text()')).strip()
-            price = ''.join(html_info.xpath('.//td[6]//text()')).strip()
+            sell_count = ''.join(html_info.xpath('.//td[3]//text()')).strip()
+            company = ''.join(html_info.xpath('.//td[4]//text()')).strip()
+            price = ''.join(html_info.xpath('.//td[5]//text()')).strip()
             message = f'**SUV销量榜**\n排名：{ranking};\n车型：{product};\n销量：{sell_count};\n厂商：{company};\n价格：{price};'
             print(message)
             DingTalks.compose(message)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
 
 
 def car_main():
     while True:
-        try:
-            CarInfo().get_16888_car_add_rise()
-            CarInfo().get_16888_car_reduce_rise()
-            CarInfo().get_16888_car_brand_ranking()
-            CarInfo().get_16888_car_product_selling_num()
-            CarInfo().get_16888_car_e_product_selling_num()
-            CarInfo().get_16888_car_home_product_selling_num()
-            CarInfo().get_16888_car_suv_product_selling_num()
-        except Exception as e:
-            print(e)
-        time.sleep(60 * 60 * 10)
+        hour = datetime.datetime.now().hour
+        print(f'hour is {hour}')
+        if 18 > hour > 9:
+            try:
+                CarInfo().get_16888_car_add_rise()
+                CarInfo().get_16888_car_reduce_rise()
+                CarInfo().get_16888_car_brand_ranking()
+                CarInfo().get_16888_car_product_selling_num()
+                CarInfo().get_16888_car_e_product_selling_num()
+                CarInfo().get_16888_car_home_product_selling_num()
+                CarInfo().get_16888_car_suv_product_selling_num()
+            except Exception as e:
+                print(e)
+            time.sleep(60 * 60 * 2)
 
 
 if __name__ == '__main__':

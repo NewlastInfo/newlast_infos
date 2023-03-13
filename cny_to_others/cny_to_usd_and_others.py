@@ -9,6 +9,7 @@ from loguru import logger
 from dingTalk_cny import DingTalks
 from settings import *
 from lxml import etree
+import datetime
 
 
 class CnyToOthersInfo:
@@ -53,7 +54,7 @@ class CnyToOthersInfo:
             tuple_sql = (vrtName, price, time_str,)
             # print(tuple_sql)
             self.insert_ke_data(tuple_sql)
-        time.sleep(60 * 60 * 10)
+        time.sleep(60 * 60 * 1)
         DingTalks.compose('**************分界线*******************')
 
     def insert_ke_data(self, tuple_sql: tuple):
@@ -94,10 +95,18 @@ class CnyToOthersInfo:
 
 def cny_main():
     while True:
-        try:
-            CnyToOthersInfo().get_cny_info()
-        except Exception as e:
-            pass
+        hour = datetime.datetime.now().hour
+        print(f'hour is {hour}')
+        if 11 > hour > 9:
+            try:
+                CnyToOthersInfo().get_cny_info()
+            except Exception as e:
+                pass
+        elif 18 > hour > 16:
+            try:
+                CnyToOthersInfo().get_cny_info()
+            except Exception as e:
+                pass
 
 
 if __name__ == '__main__':
