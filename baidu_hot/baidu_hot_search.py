@@ -61,7 +61,7 @@ class BaiDuHotSearch:
             public_time = str(datetime.datetime.now().date())
             # print(public_time)
             tuple_sql = (title, info_url, summary, hot_index, ranking, public_time,)
-            print(tuple_sql)
+            # print(tuple_sql)
             self.insert_baidu_hot_info_data(tuple_sql)
         time.sleep(3 * 60 * 60)
 
@@ -95,9 +95,9 @@ class BaiDuHotSearch:
             except Exception as e:
 
                 conn.close()
-                pass
+                print(f'e1:{e}')
         except Exception as w:
-            pass
+            print(f'e2:{w}')
 
 
 @logger.catch
