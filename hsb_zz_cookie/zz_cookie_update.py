@@ -23,7 +23,7 @@ def update_zz_cookie_count():
 
 while True:
     hour = datetime.datetime.now().hour
-    if hour == 9:
+    if hour == 1:
         update_zz_cookie_count()
         time.sleep(60 * 60)
     else:
