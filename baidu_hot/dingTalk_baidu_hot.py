@@ -48,3 +48,4 @@ class DingTalks:
 
 if __name__ == '__main__':
     DingTalks.compose("测试")
+    DingTalks.compose("f'")
