@@ -19,6 +19,7 @@ def update_zz_cookie_count():
     cursor.execute(update_sql)
     conn.commit()
     conn.close()
+    logger.info(f'更新转转cookie计数')
 
 
 while True:
